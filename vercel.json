@@ -23,7 +23,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "project_name/wsgi.py"
+            "dest": "satim/wsgi.py"
         }
     ]
 }
