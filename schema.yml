@@ -1,0 +1,1073 @@
+openapi: 3.0.3
+info:
+  title: Satim Call Center API
+  version: 1.0.0
+  description: API for the Satim Call Center Solution
+  contact:
+    name: Satim Team
+    email: A_TOUATI@ESTIN.DZ
+paths:
+  /calls-managing/admin-login/:
+    post:
+      operationId: calls_managing_admin_login_create
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      tags:
+      - calls-managing
+      responses:
+        '200':
+          description: No response body
+  /calls-managing/admin-register/:
+    post:
+      operationId: calls_managing_admin_register_create
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      tags:
+      - calls-managing
+      responses:
+        '200':
+          description: No response body
+  /calls-managing/agent-delete/{id}/:
+    delete:
+      operationId: calls_managing_agent_delete_destroy
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /calls-managing/agent-detail/{id}/:
+    get:
+      operationId: calls_managing_agent_detail_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: ''
+  /calls-managing/agent-list/:
+    get:
+      operationId: calls_managing_agent_list_list
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedAgentList'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/PaginatedAgentList'
+          description: ''
+  /calls-managing/agent-login/:
+    post:
+      operationId: calls_managing_agent_login_create
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      tags:
+      - calls-managing
+      responses:
+        '200':
+          description: No response body
+  /calls-managing/agent-update/{id}/:
+    get:
+      operationId: calls_managing_agent_update_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: ''
+    put:
+      operationId: calls_managing_agent_update_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Agent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Agent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Agent'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: ''
+    patch:
+      operationId: calls_managing_agent_update_partial_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedAgent'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedAgent'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedAgent'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Agent'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Agent'
+          description: ''
+    delete:
+      operationId: calls_managing_agent_update_destroy
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /calls-managing/best-agent/:
+    post:
+      operationId: calls_managing_best_agent_create
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          description: No response body
+  /calls-managing/call-create/:
+    post:
+      operationId: calls_managing_call_create_create
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/call_serializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/call_serializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/call_serializer'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+          description: ''
+  /calls-managing/call-delete/{id}/:
+    delete:
+      operationId: calls_managing_call_delete_destroy
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /calls-managing/call-list/:
+    get:
+      operationId: calls_managing_call_list_list
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Paginatedcall_serializerList'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/Paginatedcall_serializerList'
+          description: ''
+  /calls-managing/call-update/{id}/:
+    get:
+      operationId: calls_managing_call_update_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+          description: ''
+    put:
+      operationId: calls_managing_call_update_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/call_serializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/call_serializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/call_serializer'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+          description: ''
+    patch:
+      operationId: calls_managing_call_update_partial_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Patchedcall_serializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Patchedcall_serializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Patchedcall_serializer'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/call_serializer'
+          description: ''
+    delete:
+      operationId: calls_managing_call_update_destroy
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /calls-managing/create-user/:
+    post:
+      operationId: calls_managing_create_user_create
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User_serializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User_serializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User_serializer'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+          description: ''
+  /calls-managing/user-list/:
+    get:
+      operationId: calls_managing_user_list_list
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedUser_serializerList'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/PaginatedUser_serializerList'
+          description: ''
+  /calls-managing/user-update/{id}/:
+    get:
+      operationId: calls_managing_user_update_retrieve
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+          description: ''
+    put:
+      operationId: calls_managing_user_update_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User_serializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/User_serializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/User_serializer'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+          description: ''
+    patch:
+      operationId: calls_managing_user_update_partial_update
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedUser_serializer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedUser_serializer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedUser_serializer'
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+            text/html:
+              schema:
+                $ref: '#/components/schemas/User_serializer'
+          description: ''
+    delete:
+      operationId: calls_managing_user_update_destroy
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - html
+          - json
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - calls-managing
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+components:
+  schemas:
+    Agent:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        is_superuser:
+          type: boolean
+          title: Superuser status
+          description: Designates that this user has all permissions without explicitly
+            assigning them.
+        first_name:
+          type: string
+          maxLength: 150
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+        first_mame:
+          type: string
+          maxLength: 100
+        username:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        rating:
+          type: number
+          format: double
+        phone_numbers: {}
+        join_date:
+          type: string
+          format: date
+        agent_type:
+          type: string
+          maxLength: 100
+        first_prefered_language:
+          type: string
+          maxLength: 100
+        second_prefered_language:
+          type: string
+          maxLength: 100
+        third_prefered_language:
+          type: string
+          maxLength: 100
+        admin:
+          type: boolean
+        on_duty:
+          type: boolean
+        password:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        groups:
+          type: array
+          items:
+            type: integer
+        user_permissions:
+          type: array
+          items:
+            type: integer
+      required:
+      - age
+      - agent_type
+      - email
+      - first_mame
+      - first_prefered_language
+      - id
+      - join_date
+      - last_name
+      - on_duty
+      - password
+      - rating
+      - second_prefered_language
+      - third_prefered_language
+      - username
+    PaginatedAgentList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Agent'
+    PaginatedUser_serializerList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/User_serializer'
+    Paginatedcall_serializerList:
+      type: object
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/call_serializer'
+    PatchedAgent:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        last_login:
+          type: string
+          format: date-time
+          nullable: true
+        is_superuser:
+          type: boolean
+          title: Superuser status
+          description: Designates that this user has all permissions without explicitly
+            assigning them.
+        first_name:
+          type: string
+          maxLength: 150
+        is_staff:
+          type: boolean
+          title: Staff status
+          description: Designates whether the user can log into this admin site.
+        is_active:
+          type: boolean
+          title: Active
+          description: Designates whether this user should be treated as active. Unselect
+            this instead of deleting accounts.
+        date_joined:
+          type: string
+          format: date-time
+        first_mame:
+          type: string
+          maxLength: 100
+        username:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        age:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        rating:
+          type: number
+          format: double
+        phone_numbers: {}
+        join_date:
+          type: string
+          format: date
+        agent_type:
+          type: string
+          maxLength: 100
+        first_prefered_language:
+          type: string
+          maxLength: 100
+        second_prefered_language:
+          type: string
+          maxLength: 100
+        third_prefered_language:
+          type: string
+          maxLength: 100
+        admin:
+          type: boolean
+        on_duty:
+          type: boolean
+        password:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        groups:
+          type: array
+          items:
+            type: integer
+        user_permissions:
+          type: array
+          items:
+            type: integer
+    PatchedUser_serializer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        phone_number:
+          type: string
+          maxLength: 100
+        location:
+          type: string
+        age:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        prefered_language:
+          type: string
+          maxLength: 100
+    Patchedcall_serializer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        call_date:
+          type: string
+          format: date
+        call_duration:
+          type: number
+          format: double
+        call_type:
+          type: string
+          maxLength: 100
+        call_rating:
+          type: number
+          format: double
+        call_feedback:
+          type: string
+        agent:
+          type: integer
+        user:
+          type: string
+    User_serializer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        first_name:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        phone_number:
+          type: string
+          maxLength: 100
+        location:
+          type: string
+        age:
+          type: integer
+          maximum: 2147483647
+          minimum: -2147483648
+        prefered_language:
+          type: string
+          maxLength: 100
+      required:
+      - age
+      - first_name
+      - id
+      - last_name
+      - location
+      - phone_number
+    call_serializer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        call_date:
+          type: string
+          format: date
+        call_duration:
+          type: number
+          format: double
+        call_type:
+          type: string
+          maxLength: 100
+        call_rating:
+          type: number
+          format: double
+        call_feedback:
+          type: string
+        agent:
+          type: integer
+        user:
+          type: string
+      required:
+      - agent
+      - call_date
+      - call_duration
+      - call_feedback
+      - call_rating
+      - call_type
+      - id
+      - user
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

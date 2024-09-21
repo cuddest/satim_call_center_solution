@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 from datetime import timedelta
 
@@ -45,6 +46,8 @@ INSTALLED_APPS = [
     "rest_framework_swagger",
     "drf_spectacular",
     "calls_managing",
+   
+
 ]
 
 REST_FRAMEWORK = {
@@ -179,3 +182,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles_build", "static")
 MEDIA_URLS = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Satim Call Center API",
+    "DESCRIPTION": "API for the Satim Call Center Solution",
+    "VERSION": "1.0.0",
+    "CONTACT": {
+        "name": "Satim Team",
+        "email": "A_TOUATI@ESTIN.DZ",
+    },
+}
